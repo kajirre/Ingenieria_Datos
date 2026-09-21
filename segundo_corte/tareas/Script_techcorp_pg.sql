@@ -149,8 +149,7 @@ select * from empleado where salario  > 4000000;
 
 /* 3 */
 /* Empleados que trabajan en el departamento de ventas */
-select * from empleado where id_departamento_fk = 1; -- 1 es ventas
-select e.* from empleado e join departamento d on e.id_departamento_fk = d.id_departamento where d.nombre_departamento = 'Ventas'; 
+select * from empleado where id_departamento_fk = 1; -- 1 es ventas 
 
 /* 4 */
 /* Empleados que tienen entre 30 y 40 */
@@ -169,13 +168,6 @@ select * from empleado where extract(year from fecha_contratacion) > 2020;
   COUNT(): Una función de agregación que cuenta la cantidad de filas.
   GROUP BY: Agrupa los registros por una columna 
   (en este caso, por el nombre del departamento). 						*/
-
-SELECT 
-    d.nombre_departamento, 
-    COUNT(e.id_empleado) AS total_empleados
-FROM departamento d
-LEFT JOIN empleado e ON d.id_departamento = e.id_departamento_fk
-GROUP BY d.nombre_departamento;
 
 /* OTRA FORMA DE HACERLO */
 SELECT 
@@ -206,10 +198,7 @@ select * from empleado  where nombre_empleado ~* '^(A|C)';
 /* EMPLEADOS QUE NO ESTAN EN TI */
 select * from empleado where id_departamento_fk != 2;
 select * from empleado e where e.id_departamento_fk not in (2);
-SELECT e.* 
-FROM empleado e
-JOIN departamento d ON e.id_departamento_fk = d.id_departamento
-WHERE d.nombre_departamento != 'IT';
+
 
 
 /* 9 */
