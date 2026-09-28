@@ -38,13 +38,13 @@ http://localhost:5678
 
 ¡Y listo! Ahí estará tu n8n tal cual como lo dejaste, con todos tus flujos, cuentas y configuraciones intactas.
 
-|**Acción**|**Comando**|
-|---|---|
-|**Iniciar n8n**|`docker start n8n`|
-|**Detener n8n**|`docker stop n8n`|
-|**Ver si está corriendo**|`docker ps`|
-|**Ver todos los contenedores**|`docker ps -a`|
-|**Ver errores/logs de n8n**|`docker logs -f n8n`|
+| **Acción**                     | **Comando**          |
+| ------------------------------ | -------------------- |
+| **Iniciar n8n**                | `docker start n8n`   |
+| **Detener n8n**                | `docker stop n8n`    |
+| **Ver si está corriendo**      | `docker ps`          |
+| **Ver todos los contenedores** | `docker ps -a`       |
+| **Ver errores/logs de n8n**    | `docker logs -f n8n` |
 
 ---
 ## Instalar Docker
