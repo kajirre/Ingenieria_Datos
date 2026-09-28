@@ -1,7 +1,9 @@
 
-## Bloque 1 la base de la bd (ddl)
+## Bloque 1 la base la (ddl)
 
 Acá esta el modelo relacional -> [[reto1_mapa_finca.png]]
+la reflexion esta en el final 
+
 
    #### 1. Tabla: `fincas`
 
@@ -83,4 +85,5 @@ Acá esta el modelo relacional -> [[reto1_mapa_finca.png]]
 |`kilos`|`DECIMAL(10,2)`|**Sí**|Cantidad de kilos solicitados de esa tostión.|
 |`precio`|`DECIMAL(10,2)`|**Sí**|Precio negociado por kilo para esa línea.|
 
-1. 
+## Reflexion 
+ en la tabla de la finca se dejo una viriable bool para indicar si esta activa o no, con eso el flujo sigue normal dentro de la base datos solo que la finca puede estar activa o no
