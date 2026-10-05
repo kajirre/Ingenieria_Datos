@@ -16,15 +16,28 @@ USE DronAndesExpress;
 -- CREANDO LAS TABLAS
 -- ============================
 
-CREATE TABLE 
+CREATE TABLE bases(
+  id_base INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(30) NOT NULL,
+  municipio VARCHAR(50) NOT NULL,
+  departamento VARCHAR(50) NOT NULL,
+  capacidad_drones INT NOT NULL,
+  fecha_apertura DATE NOT NULL 
+);
 
 
 
 
 
-INSERT INTO bases (id_base, nombre, municipio, departamento, capacidad_drones,
+
+INSERT INTO bases(id_base, nombre, municipio, departamento, capacidad_drones,
+fecha_apertura) VALUES
+(1, 'Base Cóndor', 'Rionegro', 'Antiod_base, nombre, municipio, departamento, capacidad_drones,
 fecha_apertura) VALUES
 (1, 'Base Cóndor', 'Rionegro', 'Antioquia', 6, '2024-02-15'),
+(2, 'Base Colibrí', 'Guatapé', 'Antioquia', 4, '2024-08-01'),
+(3, 'Base Frailejón', 'Tunja', 'Boyacá', 5, '2025-01-20'),
+(4, 'Base Guadua', 'Salento', 'Quindío', 3, '2026-07-01');quia', 6, '2024-02-15'),
 (2, 'Base Colibrí', 'Guatapé', 'Antioquia', 4, '2024-08-01'),
 (3, 'Base Frailejón', 'Tunja', 'Boyacá', 5, '2025-01-20'),
 (4, 'Base Guadua', 'Salento', 'Quindío', 3, '2026-07-01');
