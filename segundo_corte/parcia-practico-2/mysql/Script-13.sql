@@ -1,6 +1,4 @@
--- =====================================================================
--- SCRIPT COMPLETO PARCIAL - DRONANDES EXPRESS (MySQL)
--- =====================================================================
+
 
 DROP DATABASE IF EXISTS DronAndesExpress;
 CREATE DATABASE DronAndesExpress CHARACTER SET utf8mb4;
