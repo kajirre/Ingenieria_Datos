@@ -10,15 +10,16 @@ formato ligero de intercambio de datos, cualquier lenguaje puede leerlo y escrib
 estas estructuras se pueden anidar ed un objeto puede contener arreglos y un arreglo puede contener objetos.
 
 ### Tipos de valores permitidos
+tambien conocidos como tipos primitivos de datos solo son 6
 
-|Tipo|Ejemplo|Restricción|
-|---|---|---|
-|Cadena (string)|`"Hola mundo"`|Comillas dobles, soporta Unicode y secuencias de escape|
-|Número|`42`, `-3.14`, `1.5e10`|Sin formato octal ni hexadecimal; no admite `Infinity` ni `NaN`|
-|Booleano|`true`, `false`|Siempre en minúsculas|
-|Nulo|`null`|Representa ausencia de valor|
-|Objeto|`{ "a": 1 }`|Anidable|
-|Arreglo|`[1, 2, 3]`|Anidable|
+| Tipo            | Ejemplo                 | Restricción                                                                                       |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------- |
+| Cadena (string) | `"Hola mundo"`          | Comillas dobles, soporta Unicode y secuencias de escape                                           |
+| Número          | `42`, `-3.14`, `1.5e10` | Sin formato octal ni hexadecimal; no admite `Infinity` ni `NaN`<br>int, long, double, date, array |
+| Booleano        | `true`, `false`         | Siempre en minúsculas                                                                             |
+| Nulo            | `null`                  | Representa ausencia de valor                                                                      |
+| Objeto          | `{ "a": 1 }`            | Anidable  -> object                                                                               |
+| Arreglo         | `[1, 2, 3]`             | Anidable                                                                                          |
 ### Ejemplo visual 
 ```
 {
@@ -55,4 +56,6 @@ Estructura
 | Sin comentarios              | —                             | `// comentario`   |
 | Codificación UTF-8           | Caracteres Unicode permitidos | —                 |
 **JSON no deja hacer comentarios** 
+
+
 

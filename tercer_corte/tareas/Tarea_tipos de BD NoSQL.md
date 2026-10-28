@@ -1,9 +1,9 @@
-|Tipo|Modelo de datos|Tecnología más representativa|Otras tecnologías mencionadas|
-|---|---|---|---|
-|**Clave-valor**|Pares clave → valor (hash table)|**Redis**|Amazon DynamoDB, Memcached, Riak|
-|**Documental**|Documentos JSON/BSON con esquema flexible|**MongoDB**|CouchDB, Couchbase, Amazon DocumentDB|
-|**Columnas (wide-column)**|Tablas con familias de columnas, filas dispersas|**Apache Cassandra**|HBase, Google Bigtable|
-|**Grafos**|Nodos y aristas con propiedades|**Neo4j**|Amazon Neptune, FlockDB|
+| Tipo                       | Modelo de datos                                  | Tecnología más representativa | Otras tecnologías mencionadas         |
+| -------------------------- | ------------------------------------------------ | ----------------------------- | ------------------------------------- |
+| **Clave-valor**            | Pares clave → valor (hash table)                 | **Redis**                     | Amazon DynamoDB, Memcached, Riak      |
+| **Documental**             | Documentos JSON/BSON con esquema flexible        | **MongoDB**                   | CouchDB, Couchbase, Amazon DocumentDB |
+| **Columnas (wide-column)** | Tablas con familias de columnas, filas dispersas | **Apache Cassandra**          | HBase, Google Bigtable                |
+| **Grafos**                 | Nodos y aristas con propiedades                  | **Neo4j**                     | Amazon Neptune, FlockDB               |
 ### BD clave-valor
 almacenamineto mas simple, cada item es un par: clave-valor
 ```
