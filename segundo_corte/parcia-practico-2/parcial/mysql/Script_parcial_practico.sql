@@ -144,11 +144,4 @@ id_estacion_destino, fecha_inicio, fecha_fin, km, estado, calificacion) VALUES
 
 
 INSERT INTO viaje_accesorio (id_viaje, id_accesorio, cantidad) VALUES
-(1, 1, 1), (1, 2, 1),
-(3, 1, 1),
-(5, 3, 1),
-(7, 1, 1), (7, 3, 1),
-(8, 2, 1),
-(10, 1, 1),
-(11, 2, 1),
-(13, 1, 1);
+(1, 1, 1), (1, 2, 1),(3, 1, 1),(5, 3, 1),(7, 1, 1), (7, 3, 1),(8, 2, 1),(10, 1, 1),(11, 2, 1),(13, 1, 1);
