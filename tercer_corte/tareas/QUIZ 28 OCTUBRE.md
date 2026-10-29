@@ -32,12 +32,10 @@ db.restaurantes.insertMany([
 
 ### QUIZ
 #### 12 restaurante
-[[Pasted image 20261028223828.png]]
-![[Pasted image 20261028223856.png]]
+![[./insercion_restaurante.png]]
 
 #### 9 clientes
-[[Pasted image 20261028223856.png]]
-![[Pasted image 20261028223828.png]]
+![[insercion_cliente.png]]
 
 
 
