@@ -30,10 +30,13 @@ db.restaurantes.insertMany([
 ])
 ```
 
+### QUIZ
+#### 12 restaurante
+![[Pasted image 20261028223856.png]]
 
-#### insecion de un restaurante nuevo 
+#### 9 clientes
+![[Pasted image 20261028223828.png]]
 
 
-tarea 
-12 restaurantes y 9 clientes 
+
 como consultar, modificacion y eliminacion 
