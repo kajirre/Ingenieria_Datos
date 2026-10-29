@@ -32,7 +32,7 @@ db.restaurantes.insertMany([
 
 ### QUIZ
 #### 12 restaurante
-![[./insercion_restaurante.png]]
+![[insercion_restaurante.png]]
 
 #### 9 clientes
 ![[insercion_cliente.png]]
