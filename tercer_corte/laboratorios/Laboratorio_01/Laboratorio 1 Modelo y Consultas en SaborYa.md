@@ -232,11 +232,45 @@ esto arroja el error: [MongoServerError:](#) Document failed validation
 arroja error porque en la creacion de reseñas esta prohibido que sea menos a 1 y mayor a 5.
 entonces bloqueo la insercion del dato, basicamente es un error e validacion 
 ### B6
-
+|Muestra las reseñas escritas por Laura Gómez (C01) y las reseñas que tienen al menos una foto.|
+|---|
 ```
+db.resenas.find( { "cliente.id" : "C01" } )
+
+// resultado
+
+{
+  _id: ObjectId('6aeb4e0f22ad597e32d39c8e'),
+  restaurante_id: 'R02',
+  cliente: {
+    id: 'C01',
+    nombre: 'Laura Gómez'
+  },
+  calificacion: 5,
+  texto: 'El ramen llegó caliente y bien empacado',
+  fecha: 2026-10-16T01:10:00.000Z
+}
 
 ```
 ### B7
+
+Aplica denormalización controlada: guarda en el restaurante R02 un subdocumento resumen_resenas con su promedio y su total de reseñas. Calcula los valores a partir de los datos de B4.
+
+```
+
+```
 ### B8
+Obtén la lista de restaurantes distintos que tienen reseñas.
+```
+db.resenas.distinct("restaurante_id")
 
+// resultado
+[ 'R02', 'R04', 'R10' ]
 
+```
+
+### C1
+|Platos disponibles con stock menor a 20 unidades. Muestra nombre y stock, sin _id, del menor al mayor stock.|
+```
+
+```
