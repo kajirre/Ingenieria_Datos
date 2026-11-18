@@ -256,6 +256,7 @@ db.resenas.find( { "cliente.id" : "C01" } )
 
 Aplica denormalización controlada: guarda en el restaurante R02 un subdocumento resumen_resenas con su promedio y su total de reseñas. Calcula los valores a partir de los datos de B4.
 
+la verdad no se como hacer eso 
 ```
 
 ```
@@ -268,9 +269,220 @@ db.resenas.distinct("restaurante_id")
 [ 'R02', 'R04', 'R10' ]
 
 ```
-
+El método `.distinct("campo")` en MongoDB devuelve un arreglo con los valores únicos que existen para ese campo en la colección.
 ### C1
-|Platos disponibles con stock menor a 20 unidades. Muestra nombre y stock, sin _id, del menor al mayor stock.|
+Platos disponibles con stock menor a 20 unidades. Muestra nombre y stock, sin _id, del menor al mayor stock.
+
+```
+db.productos.find(
+  { 
+    $and: [ 
+      { disponible: true }, 
+      { stock: { $lt: 20 } } 
+    ] 
+  },
+  { nombre: 1, stock: 1, _id: 0 }
+).sort({ stock: 1 })
+
+// Respuesta 
+{
+  nombre: 'Cazuela de mariscos',
+  stock: 10
+}
+{
+  nombre: 'Picada para dos',
+  stock: 12
+}
+{
+  nombre: 'Arroz con coco y pescado',
+  stock: 14
+}
+
+```
+
+
+### C2
+|Pedidos con total entre 50.000 y 80.000 (inclusive) pagados en efectivo o con nequi. Muestra el total y el método de pago.|
+|---|
+
+```
+db.pedidos.find(
+  { 
+    total: { $gte: 50000, $lte: 80000 }, 
+    metodo_pago: { $in: ["efectivo", "nequi"] } 
+  },
+  { total: 1, metodo_pago: 1, _id: 0 }
+)
+
+
+// Respuesta
+
+
+
+{
+  metodo_pago: 'efectivo',
+  total: 64000
+}
+{
+  metodo_pago: 'nequi',
+  total: 67000
+}
+{
+  metodo_pago: 'efectivo',
+  total: 78000
+}
+
+```
+
+
+### C3
+
+Los 3 restaurantes de Bogotá con mejor calificación. Muestra nombre y calificación.
+
+```
+//Los 3 restaurantes de Bogotá con mejor calificación. Muestra nombre y calificación.
+
+db.restaurantes.find(
+  { ciudad : "Bogotá" },
+  { nombre : 1, calificacion : 1, _id : 0 }  
+).sort({ calificacion : -1 }).limit(3)
+
+
+// Resultado
+
+{
+  nombre: 'Sushi Nikko',
+  calificacion: 4.8
+}
+
+{
+  nombre: 'Arepas La 19',
+  calificacion: 4.6
+}
+
+{
+  nombre: 'Ajiaco & Co',
+  calificacion: 4.5
+}
+
+```
+
+
+### C4
+
+Los 3 restaurantes de Bogotá con mejor calificación. Muestra nombre y calificación.
+
+| Clientes de Bogotá con más de 100 puntos. |
+| ----------------------------------------- |
+
+dice 
+
+```
+
+db.clientes.find(
+	{ ciudad : "Bogotá", puntos: { $gt : 100}},
+	{ nombre : 1, ciudad : 1, puntos : 1, _id : 0}
+)
+
+
+// Respuesta
+
+
+{
+  nombre: 'Laura Gómez',
+  ciudad: 'Bogotá',
+  puntos: 120
+}
+{
+  nombre: 'Andrés Rojas',
+  ciudad: 'Bogotá',
+  puntos: 340
+}
+{
+  nombre: 'Julián Castro',
+  ciudad: 'Bogotá',
+  puntos: 600
+}
+
+```
+
+
+### C5
+
+|Pedidos hechos entre el 12 y el 14 de octubre de 2026 (hora de Colombia, ambos días incluidos) que no estén entregados.|
+|---|
+esto tiene dos filtros, el primero de la fecha:
+- **Inicio:** `new Date("2026-10-12T00:00:00-05:00")`
+- **Fin (exclusivo):** `new Date("2026-10-15T00:00:00-05:00")`
+- `{ fecha: { $gte: new Date("2026-10-12T00:00:00-05:00"), $lt: new Date("2026-10-15T00:00:00-05:00") } }`
+- mayor que new Date, menor que new Date
+- el otro de la condicion del estado(entregado: no entregado -> `$ne` (not equal) )
+- `{ estado: { $ne: "entregado" } }`
+- Proyecta solo los campos necesarios, muestra los campos que sirvan para verificar: `_id` del pedido, `fecha` y `estado`.
+
+```
+db.pedidos.find(
+  {
+    fecha: { 
+      $gte: new Date("2026-10-12T00:00:00-05:00"), 
+      $lt: new Date("2026-10-15T00:00:00-05:00") 
+    },
+    estado: { $ne: "entregado" }
+  },
+  { _id: 1, fecha: 1, estado: 1 }
+)
+
+
+// respuesta 
+
+{
+  _id: 'PD015',
+  fecha: 2026-10-12T23:30:00.000Z,
+  estado: 'en_camino'
+}
+{
+  _id: 'PD016',
+  fecha: 2026-10-12T18:00:00.000Z,
+  estado: 'pendiente'
+}
+{
+  _id: 'PD017',
+  fecha: 2026-10-14T01:20:00.000Z,
+  estado: 'en_camino'
+}
+{
+  _id: 'PD018',
+  fecha: 2026-10-14T02:00:00.000Z,
+  estado: 'pendiente'
+}
+{
+  _id: 'PD020',
+  fecha: 2026-10-15T00:10:00.000Z,
+  estado: 'cancelado'
+}
+```
+
+
+
+### C6
+
+|Pedidos con algún ítem de precio menor a 10.000 y cantidad de 2 o más en ese mismo ítem. Luego ejecuta la versión sin $elemMatch. Explica en un comentario por qué el resultado cambia.|
+|---|
+
+```
+
+```
+
+### C7
+|Catálogo de productos del más caro al más barato, con 6 productos por página. Muestra la página 2 de forma que la paginación sea estable cuando haya precios repetidos.|
+|---|
+```
+
+```
+
+### C8
+|Restaurantes que tienen el campo horario o el campo menu_vegano.|
+|---|
 ```
 
 ```

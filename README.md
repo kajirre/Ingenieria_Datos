@@ -1,1 +1,3 @@
-# Clase de Ingieria de Datos 
+# Clase de Ingenieria de Datos 
+
+Todo esta organizado 
