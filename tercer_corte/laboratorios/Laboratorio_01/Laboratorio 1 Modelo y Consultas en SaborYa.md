@@ -471,18 +471,95 @@ db.pedidos.find(
 
 ```
 
+db.pedidos.find(
+  { 
+    "items.precio": { $lt: 10000 }, 
+    "items.cantidad": { $gte: 2 } 
+  }
+)
+
 ```
 
 ### C7
-|Catálogo de productos del más caro al más barato, con 6 productos por página. Muestra la página 2 de forma que la paginación sea estable cuando haya precios repetidos.|
-|---|
+| Catálogo de productos del más caro al más barato, con 6 productos por página. Muestra la página 2 de forma que la paginación sea estable cuando haya precios repetidos. |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+	El ordenamiento (Sort)
+Primero por precio, del más caro al más barato: `{ precio: -1 }`
+Luego por `_id` (para desempatar): `{ _id: 1 }`
+    
+
+Juntos: `.sort({ precio: -1, _id: 1 })`
+3. La paginación (Skip y Limit)
+
+- Página 1: productos del 1 al 6 → `.skip(0).limit(6)`
+    
+- **Página 2:** productos del 7 al 12 → `.skip(6).limit(6)`
+    
+
+La fórmula es: `skip = (número_de_página - 1) * productos_por_página`
+
 ```
+
+db.productos.find(
+  {},
+  { nombre: 1, precio: 1, _id: 1 }
+).sort({ precio: -1, _id: 1 }).skip(6).limit(6)
 
 ```
 
 ### C8
-|Restaurantes que tienen el campo horario o el campo menu_vegano.|
-|---|
-```
+| Restaurantes que tienen el campo horario o el campo menu_vegano. |
+| ---------------------------------------------------------------- |
+
+En MongoDB, para saber si un campo existe (sin importar su valor), usamos el operador `$exists: true`.
+
+- Si existe el campo `horario`: `{ horario: { $exists: true } }`
+    
+- Si existe el campo `menu_vegano`: `{ menu_vegano: { $exists: true } }`
+    
+
+2. El operador `$or`
+
+Como el enunciado dice **"o"**, no necesitamos que se cumplan las dos condiciones, sino al menos una. Para eso usamos `$or`, que recibe un arreglo de condiciones:
+
+{ 
+  $or: [ 
+    { horario: { $exists: true } }, 
+    { menu_vegano: { $exists: true } } 
+  ] 
+}
 
 ```
+db.restaurantes.find(
+  { 
+    $or: [ 
+      { horario: { $exists: true } }, 
+      { menu_vegano: { $exists: true } } 
+    ] 
+  },
+  { nombre: 1, horario: 1, menu_vegano: 1, _id: 0 }
+)
+
+
+```
+
+
+- **D5 (Eliminar campo):** Es un `updateOne` con `$unset`. Rápido.
+    
+    db.productos.updateOne({ _id: "P06" }, { $unset: { volumen_ml: "" } })
+    
+- **D6 y D7 (Borrados):** recordar **contar antes** (Regla 4). Usa `countDocuments` con el mismo filtro, luego `deleteMany`.
+    
+    // D6
+    db.resenas.countDocuments({ calificacion: { $lt: 3 } })
+    db.resenas.deleteMany({ calificacion: { $lt: 3 } })
+    
+- **D8 (Conteo final):** Es solo `countDocuments()` en las 5 colecciones. Toma 1 minuto y son 4 puntos.
+
+- **D4 (Upsert):** `upsert`. Es un `updateOne` con `{ upsert: true }` buscando por email.
+    
+    db.clientes.updateOne(
+      { email: "natalia.suarez@example.com" },
+      { $setOnInsert: { _id: "C09", nombre: "Natalia Suárez", ciudad: "Medellín", puntos: 0, direcciones: [] } },
+      { upsert: true }
+    )
